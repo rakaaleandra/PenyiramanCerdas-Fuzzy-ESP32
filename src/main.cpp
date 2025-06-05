@@ -33,6 +33,18 @@ void setup() {
   // rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
 }
 
+// === Fuzzy Mamdani ===
+// ===== Fuzifikasi ====
+void fuzzy(float suhu, float persenTanah, uint16_t lux){
+  float dataSuhu[3] = {25, 28.5, 32};
+  float dataTanah[3] = {30, 50, 70};
+  float dataLux[3] = {1000, 5500, 10000};
+
+  for(int i = 0; i < 3; ++i){
+    
+  }
+}
+
 // === Fungsi Fuzzy Kategori ===
 String suhuKategori(float suhu) {
   if (suhu < 25) return "Dingin";
