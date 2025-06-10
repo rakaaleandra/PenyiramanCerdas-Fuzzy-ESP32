@@ -124,7 +124,7 @@ int main(){
     r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_basah, mu_cahaya_sedang);  // Tidak
     r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_basah, mu_cahaya_terik);   // Tidak
 
-    // Suhu Sejuk
+    // Suhu Normal
     r[i++] = fuzzy_and3(mu_suhu_sejuk, mu_lembap_kering, mu_cahaya_redup);   // Lama
     r[i++] = fuzzy_and3(mu_suhu_sejuk, mu_lembap_kering, mu_cahaya_sedang);  // Lama
     r[i++] = fuzzy_and3(mu_suhu_sejuk, mu_lembap_kering, mu_cahaya_terik);   // Cepat
@@ -164,15 +164,16 @@ int main(){
     cout << "Penyiraman Tinggi : " << mu_lama << endl;
 
     // === Defuzzifikasi ===
+    // Menggunakan Weight Average
     // Misal: representasi crisp untuk penyiraman
     // float z_rendah = 30;
     // float z_sedang = 60;
     // float z_tinggi = 90;
     // Nilai crisp output dalam detik
     float z_tidak = 0;
-    float z_cepat = 10;
-    float z_sedang = 15;
-    float z_lama = 20;
+    float z_cepat = 2;
+    float z_sedang = 5;
+    float z_lama = 8;
 
     float numerator = (mu_tidak * z_tidak) +
                       (mu_sedang * z_sedang) +
