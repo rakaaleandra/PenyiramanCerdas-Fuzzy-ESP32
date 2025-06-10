@@ -94,16 +94,16 @@ int main(){
 
     // === Fuzzifikasi ===
     float mu_suhu_dingin = suhu_dingin(suhu);
-    float mu_suhu_sejuk = suhu_normal(suhu);
+    float mu_suhu_normal = suhu_normal(suhu);
     float mu_suhu_panas = suhu_panas(suhu);
 
     float mu_lembap_kering = lembap_kering(kelembapan);
-    float mu_lembap_lembab = lembap_sedang(kelembapan);
+    float mu_lembap_sedang = lembap_sedang(kelembapan);
     float mu_lembap_basah  = lembap_basah(kelembapan);
 
     float mu_cahaya_redup  = cahaya_redup(cahaya);
     float mu_cahaya_sedang = cahaya_sedang(cahaya);
-    float mu_cahaya_terik = cahaya_terang(cahaya);
+    float mu_cahaya_terang = cahaya_terang(cahaya);
 
     // === Inferensi ===
     // float rule1 = fuzzy_and(fuzzy_and(mu_suhu_panas, mu_lembap_kering), mu_cahaya_terang);
@@ -114,37 +114,37 @@ int main(){
     int i = 0;
 
     // Suhu Dingin
-    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_kering, mu_cahaya_redup);  // Lama
-    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_kering, mu_cahaya_sedang); // Sedang
-    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_kering, mu_cahaya_terik);  // Cepat
-    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_lembab, mu_cahaya_redup);  // Tidak
-    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_lembab, mu_cahaya_sedang); // Tidak
-    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_lembab, mu_cahaya_terik);  // Tidak
-    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_basah, mu_cahaya_redup);   // Tidak
-    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_basah, mu_cahaya_sedang);  // Tidak
-    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_basah, mu_cahaya_terik);   // Tidak
+    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_kering, mu_cahaya_redup);  // 1
+    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_kering, mu_cahaya_sedang); // 2
+    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_kering, mu_cahaya_terang);  // 3
+    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_sedang, mu_cahaya_redup);  // 4
+    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_sedang, mu_cahaya_sedang); // 5
+    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_sedang, mu_cahaya_terang);  // 6
+    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_basah, mu_cahaya_redup);   // 7
+    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_basah, mu_cahaya_sedang);  // 8
+    r[i++] = fuzzy_and3(mu_suhu_dingin, mu_lembap_basah, mu_cahaya_terang);   // 9
 
     // Suhu Normal
-    r[i++] = fuzzy_and3(mu_suhu_sejuk, mu_lembap_kering, mu_cahaya_redup);   // Lama
-    r[i++] = fuzzy_and3(mu_suhu_sejuk, mu_lembap_kering, mu_cahaya_sedang);  // Lama
-    r[i++] = fuzzy_and3(mu_suhu_sejuk, mu_lembap_kering, mu_cahaya_terik);   // Cepat
-    r[i++] = fuzzy_and3(mu_suhu_sejuk, mu_lembap_lembab, mu_cahaya_redup);   // Sedang
-    r[i++] = fuzzy_and3(mu_suhu_sejuk, mu_lembap_lembab, mu_cahaya_sedang);  // Sedang
-    r[i++] = fuzzy_and3(mu_suhu_sejuk, mu_lembap_lembab, mu_cahaya_terik);   // Cepat
-    r[i++] = fuzzy_and3(mu_suhu_sejuk, mu_lembap_basah, mu_cahaya_redup);    // Tidak
-    r[i++] = fuzzy_and3(mu_suhu_sejuk, mu_lembap_basah, mu_cahaya_sedang);   // Tidak
-    r[i++] = fuzzy_and3(mu_suhu_sejuk, mu_lembap_basah, mu_cahaya_terik);    // Tidak
+    r[i++] = fuzzy_and3(mu_suhu_normal, mu_lembap_kering, mu_cahaya_redup);   // 10
+    r[i++] = fuzzy_and3(mu_suhu_normal, mu_lembap_kering, mu_cahaya_sedang);  // 11
+    r[i++] = fuzzy_and3(mu_suhu_normal, mu_lembap_kering, mu_cahaya_terang);   // 12
+    r[i++] = fuzzy_and3(mu_suhu_normal, mu_lembap_sedang, mu_cahaya_redup);   // 13
+    r[i++] = fuzzy_and3(mu_suhu_normal, mu_lembap_sedang, mu_cahaya_sedang);  // 14
+    r[i++] = fuzzy_and3(mu_suhu_normal, mu_lembap_sedang, mu_cahaya_terang);   // 15
+    r[i++] = fuzzy_and3(mu_suhu_normal, mu_lembap_basah, mu_cahaya_redup);    // 16
+    r[i++] = fuzzy_and3(mu_suhu_normal, mu_lembap_basah, mu_cahaya_sedang);   // 17
+    r[i++] = fuzzy_and3(mu_suhu_normal, mu_lembap_basah, mu_cahaya_terang);    // 18
 
     // Suhu Panas
-    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_kering, mu_cahaya_redup);   // Lama
-    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_kering, mu_cahaya_sedang);  // Lama
-    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_kering, mu_cahaya_terik);   // Cepat
-    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_lembab, mu_cahaya_redup);   // Sedang
-    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_lembab, mu_cahaya_sedang);  // Sedang
-    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_lembab, mu_cahaya_terik);   // Cepat
-    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_basah, mu_cahaya_redup);    // Tidak
-    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_basah, mu_cahaya_sedang);   // Tidak
-    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_basah, mu_cahaya_terik);    // Tidak
+    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_kering, mu_cahaya_redup);   // 19
+    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_kering, mu_cahaya_sedang);  // 20
+    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_kering, mu_cahaya_terang);   // 21
+    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_sedang, mu_cahaya_redup);   // 22 
+    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_sedang, mu_cahaya_sedang);  // 23
+    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_sedang, mu_cahaya_terang);   // 24
+    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_basah, mu_cahaya_redup);    // 25
+    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_basah, mu_cahaya_sedang);   // 26
+    r[i++] = fuzzy_and3(mu_suhu_panas, mu_lembap_basah, mu_cahaya_terang);    // 27
 
     // Output fuzzy untuk masing-masing aturan
     // float mu_penyiraman_rendah = rule3;
@@ -152,16 +152,16 @@ int main(){
     // float mu_penyiraman_tinggi = rule1;
     // Gabungkan berdasarkan output
     float mu_tidak = max({r[3], r[4], r[5], r[6], r[7], r[8], r[15], r[16], r[17], r[24], r[25], r[26]});
-    float mu_sedang = max({r[1], r[13], r[14], r[21], r[22]});
-    float mu_cepat  = max({r[2], r[11], r[14], r[20], r[23]});
-    float mu_lama   = max({r[0], r[9], r[10], r[18], r[19]});
+    float mu_cepat = max({r[2], r[11], r[14], r[20], r[23]}); // disiram cepat (2, 11, 14, 20, 23)
+    float mu_sedang = max({r[1], r[12], r[13], r[21], r[22]}); // disiram sedang (1,12,13,21,22)
+    float mu_lama = max({r[0], r[9], r[10], r[18], r[19]}); // disiram lama (0,9,10,18,19)
 
     // === Output hasil inferensi ===
     cout << "\n--- Hasil Inferensi ---\n";
     cout << "Penyiraman Tidak : " << mu_tidak << endl;
-    cout << "Penyiraman Rendah : " << mu_cepat << endl;
+    cout << "Penyiraman Cepat : " << mu_cepat << endl;
     cout << "Penyiraman Sedang : " << mu_sedang << endl;
-    cout << "Penyiraman Tinggi : " << mu_lama << endl;
+    cout << "Penyiraman Lama : " << mu_lama << endl;
 
     // === Defuzzifikasi ===
     // Menggunakan Weight Average
@@ -184,7 +184,7 @@ int main(){
 
     float z_output = (denominator == 0) ? 0 : numerator / denominator;
 
-    cout << "\n>>> Nilai akhir penyiraman (crisp): " << z_output << " detik" << endl;
+    cout << "\n>>> Nilai akhir penyiraman (detik): " << z_output << " detik" << endl;
 
     return 0;
 }
