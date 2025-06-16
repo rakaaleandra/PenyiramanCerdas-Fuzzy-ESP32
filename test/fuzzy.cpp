@@ -45,21 +45,22 @@ float lembap_basah(float x) {
 
 // ======== INTENSITAS CAHAYA ========
 float cahaya_redup(float x) {
-    if (x <= 300) return 1;
-    else if (x < 300 ) return (300 - x) / 200.0;
+    if (x <= 1000) return 1;
+    else if (x > 1000 && x < 6000) return (6000 - x) / 5000.0;
+    // else if (x < 300 ) return (300 - x) / 200.0;
     else return 0;
 }
 
 float cahaya_sedang(float x) {
-    if (x <= 150 || x >= 1200) return 0;
-    else if (x > 150 && x < 500) return (x - 150) / 350.0;
-    else if (x > 700  && x < 1200) return (1200 - x) / 500.0;
+    if (x <= 1000 || x >= 20000) return 0;
+    else if (x > 1000 && x < 6000) return (x - 1000) / 5000.0;
+    else if (x > 15000  && x < 20000) return (2000 - x) / 5000.0;
     else return 1;
 }
 
 float cahaya_terang(float x) {
-    if (x <= 800) return 0;
-    else if (x < 1500) return (x - 800) / 700.0;
+    if (x <= 15000) return 0;
+    else if (x < 20000) return (x - 15000) / 5000.0;
     else return 1;
 }
 
@@ -164,16 +165,17 @@ int main(){
     cout << "Penyiraman Lama : " << mu_lama << endl;
 
     // === Defuzzifikasi ===
-    // Menggunakan Weight Average
-    // Misal: representasi crisp untuk penyiraman
-    // float z_rendah = 30;
-    // float z_sedang = 60;
-    // float z_tinggi = 90;
-    // Nilai crisp output dalam detik
+    //tumbuhan kecil
+        // float z_tidak = 0;
+        // float z_cepat = 1;
+        // float z_sedang = 2;
+        // float z_lama = 3;
+
+    //tumbuhan kecil
     float z_tidak = 0;
-    float z_cepat = 2;
-    float z_sedang = 5;
-    float z_lama = 8;
+    float z_cepat = 5;
+    float z_sedang = 10;
+    float z_lama = 20;
 
     float numerator = (mu_tidak * z_tidak) +
                       (mu_sedang * z_sedang) +
